@@ -10,7 +10,7 @@ export class DataService {
   }
 
   fetchWordList(){
-    return this.http.get("../assets/words.json");
+    return this.http.get("assets/words.json");
   }
 
 
