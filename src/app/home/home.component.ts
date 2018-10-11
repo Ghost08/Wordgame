@@ -36,12 +36,11 @@ export class HomeComponent implements OnInit {
     this.timeDisplay = 0;
 
 
-    this._dataService.fetchWordList().subscribe(
+    this._dataService.fetchWordList().then(
       data => {
         this.words = Object.assign([], data);
         this.showWord();
-      },
-      (err) => {
+      }).catch((err) => {
         console.log(err);
       }
     );
