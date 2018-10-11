@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   message: any;
   private words: any = [];
 
-  constructor(private _dataService: DataService) {  }
+  constructor(private _dataService: DataService) { }
 
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       }).catch((err) => {
         console.log(err);
       }
-    );
+      );
   }
 
   // Pick & show random word
@@ -78,6 +78,7 @@ export class HomeComponent implements OnInit {
 
       if (this.countdownId) {
         clearInterval(this.countdownId);
+        this.countdownId = undefined;
       }
     }
 
@@ -94,6 +95,7 @@ export class HomeComponent implements OnInit {
 
       if (this.statuscheckId) {
         clearInterval(this.statuscheckId);
+        this.statuscheckId = undefined;
       }
     }
   }
@@ -102,7 +104,7 @@ export class HomeComponent implements OnInit {
 
     //this.wordInput = e.target.value;
     this.wordInput = e;
-
+    
     if (!this.countdownId)
       this.countdownId = setInterval(() => { this.countdown(); }, 1000);
     //Check game status
@@ -110,11 +112,14 @@ export class HomeComponent implements OnInit {
     if (!this.statuscheckId)
       this.statuscheckId = setInterval(() => { this.checkStatus(); }, 50);
 
+
     this.startMatch();
   }
 
   // Start match
   private startMatch() {
+
+
     if (this.matchWords()) {
       this.isPlaying = true;
       this.time = parseInt(this.currentLevel) + 1;
